@@ -1,0 +1,22 @@
+{
+  "name": "nodeserverside",
+  "version": "1.0.0",
+  "description": "data selfie",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "example",
+    "dados"
+  ],
+  "author": "Rudney eduardo/ o cara da faculdade",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "nedb": "^1.8.0",
+    "node-fetch": "^2.6.0",
+    "nodemon": "^1.19.1"
+  }
+}

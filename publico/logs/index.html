@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+    integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+    crossorigin=""></script>
+<style>
+    
+    #posMap {
+
+        height: 180px;
+
+    }
+</style>
+    <title>Document</title>
+</head>
+
+<body>
+
+
+       
+
+
+
+    <h1> Display do Database</h1>
+    <div id="posMap"></div>
+    <p>
+   <a href="../index.html">Enter</a>  <a href="index.html">Database</a>
+    </p>
+    <script>
+const mymap = L.map('posMap').setView([0, 0], 1);
+
+const attribution =
+    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenstreetMap</a> Contributors  ';
+
+const tilesUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+const tiles = L.tileLayer(tilesUrl, {
+    attribution
+});
+tiles.addTo(mymap);
+
+
+
+        getDb();
+       async  function getDb() {
+            const response = await fetch('/api');
+            const data = await response.json();
+
+            for(item of data){
+            const marker = L.marker([item.lat, item.lng]).addTo(mymap);
+             const txt = `latitude :${item.lat.toFixed(2)}° longitude : ${item.lng.toFixed(2)}° Temperatura : ${Math.round(item.temc)}°C Clima : ${item.sum}`;  
+             marker.bindPopup(txt); 
+                
+                
+
+
+               
+                
+               
+                
+                
+
+               
+            };
+            
+
+        }
+    </script>
+
+</body>
+
+</html>
